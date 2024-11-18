@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-7">
+        <h6>Products</h6>
+    </div>
+    <div class="col-5 text-end">
+        <button class="btn btn-warning">Add New</button>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-4">
+        <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
+                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>No Image Found</title>
+                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">No
+                    Image Found</text>
+            </svg>
+
+            <img style="height: 100px;" [src]="" alt="">
+            <div class="card-body">
+                <p class="card-text"></p>
+                <div class="row">
+                    <div class="col-6">
+
+                    </div>
+                    <div class="col-6 text-end">
+
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-body-secondary">9 mins</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="modal" #newModal>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">New Product</h4>
+                    <button type="button" class="btn-close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-3">
+                            <label for="">SKU</label>
+                            <input type="text" formControlName="sku" class="form-control">
+                        </div>
+                        <div class="col-9">
+                            <label for="">Long Name</label>
+                            <input type="text" formControlName="productName" class="form-control">
+                            <div class="text-danger">
+                                <span>This is Required</span>
+                                <span>Min 4 Char Needed</span>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <label for="">Short Name</label>
+                            <input type="text" formControlName="shortName" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Select Category</label>
+                            <select formControlName="category" class="form-select">
+                                <option value="">--Select--</option>
+                                <option>Mobile</option>
+                                <option>Laptop</option>
+                                <option>HeadPhone</option>
+                            </select>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="">Price</label>
+                            <input type="number" formControlName="price" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Delivery Span</label>
+                            <select formControlName="deliveryTimeSpan" class="form-select">
+                                <option value="">--Select--</option>
+                                <option>2-3 Days</option>
+                                <option>3-5 Days</option>
+                                <option>Upto 15 Days</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="">Product Image Url</label>
+                            <input type="text" formControlName="thumbnailImageUrl" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger">Close</button>
+                    <button type="button" class="btn btn-success">Save Product</button>
+                    <button type="button" class="btn btn-warning">Update Product</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
