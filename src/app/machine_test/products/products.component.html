@@ -27,8 +27,8 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-danger">Delete</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" (click)="onDelete(item.productId)">Delete</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="onEdit(item.productId)">Edit</button>
                     </div>
                     <small class="text-body-secondary">9 mins</small>
                 </div>
@@ -59,10 +59,16 @@
                         <div class="col-9">
                             <label for="">Long Name</label>
                             <input type="text" formControlName="productName" class="form-control">
-                            <div class="text-danger">
-                                <span>This is Required</span>
-                                <span>Min 4 Char Needed</span>
-                            </div>
+                            @if(this.productForm.touched) {
+                                <div class="text-danger">
+                                  @if(this.productForm.controls['productName'].errors?.['required']) {
+                                    <span>This is Required</span>
+                                  }
+                                  @else if (this.productForm.controls['productName'].errors?.['minlength']) {
+                                    <span>Min 4 Char Needed</span>
+                                  }
+                                </div>
+                              }
 
                         </div>
                         <div class="col-6">
@@ -100,9 +106,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
-                    <button type="button" class="btn btn-success" (click)="saveProduct()">Save Product</button>
-                    <button type="button" class="btn btn-warning">Update Product</button>
-
+                    @if (this.productForm.controls['productId'].value == 0) {
+                        <button type="button" class="btn btn-success" [disabled]="productForm.invalid" (click)="saveProduct()">Save Product</button>
+                    } @else {
+                        <button type="button" class="btn btn-warning" [disabled]="productForm.invalid" (click)="updateProduct()">Update Product</button>
+                    }
                 </div>
             </form>
         </div>

@@ -16,7 +16,19 @@ export class ProductService {
     return this.http.get<IProduct[]>(`${this.apiUrl}Products`);
   }
 
+  getSingleProduct(id:number): Observable<IProduct> {
+    return this.http.get<IProduct>(`${this.apiUrl}Products/getSingleProduct?id=${id}`);
+  }
+
   saveProduct(obj: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>(`${this.apiUrl}Products`, obj);
+  }
+
+  updateProduct(obj: IProduct): Observable<IProduct> {
+    return this.http.put<IProduct>(`${this.apiUrl}Products`, obj);
+  }
+
+  deleteProduct(id: number): Observable<IProduct> {
+    return this.http.delete<IProduct>(`${this.apiUrl}Products/deleteProduct?id=${id}`);
   }
 }

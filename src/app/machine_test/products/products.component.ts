@@ -20,7 +20,7 @@ export class ProductsComponent implements OnInit {
 
   productForm: FormGroup = new FormGroup({});
 
-  constructor(){
+  constructor() {
     this.initializeForm();
   }
 
@@ -61,12 +61,45 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  saveProduct(){
-    this.productSrv.saveProduct(this.productForm.value).subscribe((res:IProduct)=>{
+  saveProduct() {
+    this.productSrv.saveProduct(this.productForm.value).subscribe((res: IProduct) => {
       alert("Product Created");
       this.loadProducts();
-    }, error=>{
+      this.closeModal();
+    }, error => {
       alert("API ERROR");
     })
   }
+  updateProduct() {
+    this.productSrv.updateProduct(this.productForm.value).subscribe((res: IProduct) => {
+      alert("Product Updated");
+      this.loadProducts();
+      this.closeModal();
+    }, error => {
+      alert("API ERROR");
+    })
+  }
+
+  onDelete(id: number) {
+    const isConfirm = confirm('Are You Sure To Delete');
+    if (isConfirm) {
+      this.productSrv.deleteProduct(id).subscribe((res: IProduct) => {
+        alert("Product Delete");
+        this.loadProducts();
+      }, error => {
+        alert("API ERROR");
+      })
+    }
+  }
+
+  onEdit(id: number) {
+    this.productSrv.getSingleProduct(id).subscribe((res: IProduct) => {
+      this.productObj = res;
+      this.initializeForm();
+      this.openModal();   
+    }, error => {
+      alert("API ERROR");
+    })
+  }
+
 }
