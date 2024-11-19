@@ -8,11 +8,15 @@ import { IProduct } from '../model/product';
 })
 export class ProductService {
 
-  apiUrl : string ="https://projectapi.gerasim.in/api/";
+  apiUrl: string = "https://projectapi.gerasim.in/api/";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAllProducts() : Observable<IProduct[]>{
+  getAllProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(`${this.apiUrl}Products`);
+  }
+
+  saveProduct(obj: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>(`${this.apiUrl}Products`, obj);
   }
 }
