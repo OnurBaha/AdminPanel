@@ -3,29 +3,22 @@
         <h6>Products</h6>
     </div>
     <div class="col-5 text-end">
-        <button class="btn btn-warning">Add New</button>
+        <button class="btn btn-warning" (click)="openModal()">Add New</button>
     </div>
 </div>
 <div class="row">
-
+@for (item of productList(); track $index) {
     <div class="col-4">
         <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>No Image Found</title>
-                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">No
-                    Image Found</text>
-            </svg>
-
-            <img style="height: 100px;" [src]="" alt="">
+            <img style="height: 100px;" [src]="item.thumbnailImageUrl" alt="">
             <div class="card-body">
-                <p class="card-text"></p>
+                <p class="card-text">{{item.productName}}</p>
                 <div class="row">
                     <div class="col-6">
-
+                        {{item.category}}
                     </div>
                     <div class="col-6 text-end">
-
+                        {{item.price}}
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
@@ -38,6 +31,8 @@
             </div>
         </div>
     </div>
+}
+    
 
 
 
@@ -49,7 +44,7 @@
             <form>
                 <div class="modal-header">
                     <h4 class="modal-title">New Product</h4>
-                    <button type="button" class="btn-close"></button>
+                    <button type="button" class="btn-close" (click)="closeModal()"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -100,7 +95,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger">Close</button>
+                    <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
                     <button type="button" class="btn btn-success">Save Product</button>
                     <button type="button" class="btn btn-warning">Update Product</button>
 
